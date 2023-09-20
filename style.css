@@ -48,6 +48,7 @@ main {
     flex: 1;
     background-image: url('assets/img/forest.jpg');
     background-size: cover;
+    transition: background-image 0.3s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
