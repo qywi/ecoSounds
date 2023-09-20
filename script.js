@@ -1,3 +1,4 @@
+let previousBird;
 const solovey = document.querySelector('.solovey');
 const drozd = document.querySelector('.drozd');
 const malinovka = document.querySelector('.malinovka');
@@ -6,59 +7,77 @@ const slavka = document.querySelector('.slavka');
 const main = document.querySelector('main');
 const allBirds = document.querySelectorAll('.li-item');
 const logo = document.querySelector('.logo');
+const play = document.querySelector('.play');
+const pause = document.querySelector('.pause');
+const audio = document.querySelector('.audio');
 
-const audios = {
-    solovey: document.getElementById('soloveyAudio'),
-    drozd: document.getElementById('drozdAudio'),
-    malinovka: document.getElementById('malinovkaAudio'),
-    javoronok: document.getElementById('javoronokAudio'),
-    slavka: document.getElementById('slavkaAudio'),
-    logo: document.getElementById('logoAudio')
-};
-
-let previousBird = null;
 
 solovey.addEventListener('click', () => {
     main.style.backgroundImage = 'url("assets/img/solovey.jpg")';
-    playSound('solovey');
+    audio.src = 'assets/audio/solovey.mp3'
+    audio.play();
     changeColor(solovey);
+    play.classList.add('none');
+    pause.classList.remove('none');
 });
 
 drozd.addEventListener('click', () => {
     main.style.backgroundImage = 'url("assets/img/drozd.jpg")';
-    playSound('drozd');
+    audio.src = 'assets/audio/drozd.mp3'
+    audio.play();
     changeColor(drozd);
+    play.classList.add('none');
+    pause.classList.remove('none');
 });
 
 malinovka.addEventListener('click', () => {
     main.style.backgroundImage = 'url("assets/img/zarynka.jpg")';
-    playSound('malinovka');
+    audio.src = 'assets/audio/zarynka.mp3'
+    audio.play();
     changeColor(malinovka);
+    play.classList.add('none');
+    pause.classList.remove('none');
 });
 
 javoronok.addEventListener('click', () => {
     main.style.backgroundImage = 'url("assets/img/javoronok.jpg")';
-    playSound('javoronok');
+    audio.src = 'assets/audio/javoronok.mp3'
+    audio.play();
     changeColor(javoronok);
+    play.classList.add('none');
+    pause.classList.remove('none');
 });
 
 slavka.addEventListener('click', () => {
     main.style.backgroundImage = 'url("assets/img/slavka.jpg")';
-    playSound('slavka');
+    audio.src = 'assets/audio/slavka.mp3'
+    audio.play();
     changeColor(slavka);
+    play.classList.add('none');
+    pause.classList.remove('none');
 });
 
 logo.addEventListener('click', () => {
     main.style.backgroundImage = 'url("assets/img/forest.jpg")';
-    playSound('logo');
+    audio.src = 'assets/audio/forest.mp3'
+    audio.play();
     changeColor(logo);
+    play.classList.add('none');
+    pause.classList.remove('none');
 });
 
-function playSound(bird) {
-    Object.values(audios).forEach(audio => audio.pause()); // Останавливаем все аудио
-    audios[bird].currentTime = 0;
-    audios[bird].play();
-}
+play.addEventListener('click', () => {
+    play.classList.add('none');
+    pause.classList.remove('none');
+    playAudio();
+});
+
+pause.addEventListener('click', () => {
+    play.classList.remove('none');
+    pause.classList.add('none');
+    pauseAudio();
+});
+
 
 function changeColor(currentBird) {
     if (previousBird) {
@@ -66,4 +85,13 @@ function changeColor(currentBird) {
     }
     currentBird.style.color = 'rgb(252, 176, 113)';
     previousBird = currentBird;
+}
+
+function playAudio(audioElement) {
+    audio.currentTime = 0;
+    audio.play();
+}
+
+function pauseAudio(audioElement) {
+    audio.pause();
 }
